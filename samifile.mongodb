@@ -1,0 +1,6 @@
+use("Bus-Tracker")
+db.createCollection("Bus")
+db.Bus.insertOne({
+    name:"anbesa",
+    id:123
+})

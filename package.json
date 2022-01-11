@@ -4,7 +4,7 @@
   "description": "Used to track and manage bus",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start":"nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/samuel161415/Bus_tracker_And_managment/tree/main#readme",
   "devDependencies": {
+    "dotenv": "^10.0.0",
     "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "mongoose": "^6.1.5"
   }
 }
