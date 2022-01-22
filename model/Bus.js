@@ -10,20 +10,20 @@ const dataSchema=new Schema({
         required:true
     },
     StartingPlace:{
-        type:Boolean,
+        type:String,
         required:true, 
-        default:false
+        //default:false
     },
     Destination:{
         type:String,
         required:true
     },
     currentLocation: {
-        type: {
-          type: String,
-          default: 'Point',
-        },
-        coordinates: [Number], // [22.2475, 14.2547]  [longitude, latitude]
+        type:Array,
+        required:true
+          //default: 'Point',
+        
+        //coordinates: [Number], // [22.2475, 14.2547]  [longitude, latitude]
       }
 
 

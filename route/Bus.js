@@ -15,19 +15,20 @@ router.post("/createAcount",async(req,res)=>{  // creating new bus's Information
         
       })
 try{
-  const returnVaue=await value.save()   // used to save data to database
-  res.json(returnVaue)
+  const returnValue=await value.save()   // used to save data to database
+  res.json(returnValue)
 }
 catch(error){
 res.send('error'+ error)
 }
 })
 
-router.get("/:id",async(req,res)=>{
-    const id=req.params.id
+router.get("/TotalBus",async(req,res)=>{
+    
 try{
-const returnvalue=await bus.findOne({BusId:id})
-
+    // const id=req.params.id
+    // console.log('id is '+id)
+const returnvalue=await bus.find()
 res.json(returnvalue)
 
 }
@@ -35,6 +36,24 @@ catch(error){
 res.send("error"+error)
 }
 })
+
+router.get("/FilteredBus/:destination",async(req,res)=>{
+      var {destination}=req.params
+    try{
+        // const id=req.params.id
+        // console.log('id is '+id)
+    const returnvalue=await bus.find({Destination:destination})
+    res.json(returnvalue)
+    
+    }
+    catch(error){
+    res.send("error"+error)
+    }
+    })
+    
+// router.get('/bus',(req,res)=>{
+//     res.send('success')
+// })
 
 router.patch('/update',async(req,res)=>{
 
@@ -46,8 +65,6 @@ try{
              { upsert: true }  // used to insert if the object not found
         )
    
-   const returnVaue=await update.save()
-   res.json(returnVaue)
 }
 catch(err){
     res.send('error'+err)
@@ -55,17 +72,18 @@ catch(err){
 })
 
 
-// router.delete('/deleteAcount',async(req,res)=>{     // deleting username's acount
-//     try{
-//        const update=await Userdata.findOne({"Username":req.body.name,
-//     "UserPassword":req.body.password})
+router.delete('/deleteAcount/:id',async(req,res)=>{     // deleting username's acount
+    try{
+        const{id}=req.params
+       const update=await Userdata.findOne({BusId:id,
+    })
        
-//        const returnVaue=await update.remove()
-//        res.json(returnVaue)
-//     }
-//     catch(err){
-//         res.send('error'+err)
-//     }
-//     })
+       const returnVaue=await update.remove()
+       res.json(returnVaue)
+    }
+    catch(err){
+        res.send('error'+err)
+    }
+    })
 
 module.exports=router
