@@ -1,0 +1,3 @@
+use("Bus-Tracker")
+//db.buses.deleteMany({})
+db.buses.find()

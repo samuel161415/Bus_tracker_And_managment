@@ -7,10 +7,10 @@ router.use(express.json())
 
 router.post("/createAcount",async(req,res)=>{  // creating new bus's Information for first time
     const value=new bus({
-        BusType:req.body.busname,
-        BusId:req.body.id,
-        StartingPlace:req.body.startingPlace,
-        Destination:req.body.BusDestination,
+        busType:req.body.busname,
+        busId:req.body.id,
+        startingPlace:req.body.startingPlace,
+        destination:req.body.BusDestination,
         currentLocation:req.body.location
         
       })
@@ -42,7 +42,7 @@ router.get("/FilteredBus/:destination",async(req,res)=>{
     try{
         // const id=req.params.id
         // console.log('id is '+id)
-    const returnvalue=await bus.find({Destination:destination})
+    const returnvalue=await bus.find({destination:destination})
     res.json(returnvalue)
     
     }
@@ -59,11 +59,13 @@ router.patch('/update',async(req,res)=>{
 
 try{
     const update=await bus.updateOne(
-           { BusId: req.body.id },
+           { busId: req.body.id },
            { $set: { currentLocation: req.body.location } }, // use this format for update or updateOne. 
                                                                                         //it changes the values in upadate and leaves the other fileds unchanged
              { upsert: true }  // used to insert if the object not found
         )
+
+        res.send(update)
    
 }
 catch(err){

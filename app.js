@@ -20,9 +20,11 @@ const UserLocation=require('./route/UserLocation')
 const distance=require('./route/DistanceCalcu')
 app.use('/User',user)
 app.use('/Driver',Driver)
- app.use('/Manager',Manager)
- app.use('/Bus',Bus)
- app.use('/distance',distance)
+app.use('/Manager',Manager)
+app.use('/Bus',Bus)
+app.use('/distance',distance)
+
+require('./another')
 // app.use("/UserLocation",UserLocation)
 app.listen(5000,()=>{
     console.log("server is listning on port 5000");

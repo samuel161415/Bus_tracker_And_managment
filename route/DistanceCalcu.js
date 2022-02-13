@@ -9,12 +9,10 @@ const ds=require('../controller/distanceCalculator')
 router.post('/bus',async(req,res)=>{
         var user_latitude=req.body.latitude1
          var user_longitude=req.body.longitude1
-         var x=user_longitude/2
-         console.log('x is '+x);
         var id=req.body.id
        
     try{
-        const location=await bus.findOne({BusId:id},
+        const location=await bus.findOne({busId:id},
             {currentLocation:1,_id:0})
 
        console.log(location);

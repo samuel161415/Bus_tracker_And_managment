@@ -1,20 +1,20 @@
 const mongoose=require('mongoose')
 const Schema=mongoose.Schema
 const dataSchema=new Schema({
-    BusType:{
+    busType:{
         type:String,
         required:true
     },
-    BusId:{
+    busId:{
         type:String,
         required:true
     },
-    StartingPlace:{
+    startingPlace:{
         type:String,
         required:true, 
         //default:false
     },
-    Destination:{
+    destination:{
         type:String,
         required:true
     },

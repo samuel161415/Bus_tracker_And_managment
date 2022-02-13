@@ -4,7 +4,7 @@
   "description": "Used to track and manage bus",
   "main": "app.js",
   "scripts": {
-    "start":"nodemon app.js"
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,8 @@
     "nodemon": "^2.0.15"
   },
   "dependencies": {
-    "mongoose": "^6.1.5"
+    "@serialport/parser-readline": "^9.2.4",
+    "mongoose": "^6.1.5",
+    "serialport": "^9.2.8"
   }
 }
