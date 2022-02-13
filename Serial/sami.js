@@ -1,1 +1,0 @@
-const na=require('./nahom')
