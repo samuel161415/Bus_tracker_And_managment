@@ -1,13 +1,26 @@
+const req = require('express/lib/request')
+const { Int32, Double } = require('mongodb')
 const mongoose=require('mongoose')
 const Schema=mongoose.Schema
 const dataSchema=new Schema({
-    UserName:{
+    driverName:{
         type:String,
         required:true
     },
-    UserId:{
+    driverId:{
         type:String,
         required:true
+    },
+    password:{
+        type:String,
+        required:true
+    },
+    image:{
+        data:Buffer,
+        contentType:String
+    },
+    token:{
+        type:String
     }
     
 

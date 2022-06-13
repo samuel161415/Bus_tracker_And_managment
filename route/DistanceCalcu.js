@@ -3,26 +3,35 @@ const router=express.Router()
 const bus=require('../model/Bus')
 router.use(express.json())
 const ds=require('../controller/distanceCalculator')
+const t=require('../controller/time')
+const BusLocation=require('../model/BusLocation')
+const { json } = require('express')
 
 //
 
-router.post('/bus',async(req,res)=>{
-        var user_latitude=req.body.latitude1
-         var user_longitude=req.body.longitude1
-        var id=req.body.id
+router.post('/getDistance',async(req,res)=>{
+        var user_latitude=req.body.latitude
+         var user_longitude=req.body.longitude
+         var busId=req.body.busId
+       
        
     try{
-        const location=await bus.findOne({busId:id},
-            {currentLocation:1,_id:0})
+        const location=await BusLocation.findOne({busId:busId})
 
-       console.log(location);
-        const distance=ds(user_latitude,user_longitude,location.currentLocation[0],location.currentLocation[1],'K')
-        
+       console.log("location is ",location);
+        const distance=ds(user_latitude,user_longitude,location.latitude,location.longitude,'K')
+
+        const time=t(distance)
         res.send({
             distance:distance,
-            location:location
+            time:time,
+            speed:30,
+            lat:location.latitude,
+            log:location.longitude
+            
 
         })
+        //return res.json(location)
     }
     catch(err){
 res.send('error'+err)

@@ -1,18 +1,18 @@
 const express=require('express')
 const router=express.Router()
 const bus=require('../model/Bus')
+const BusLocation = require('../model/BusLocation')
 router.use(express.json())
+const busRoute=require('../model/Route')
 
 
 
 router.post("/createAcount",async(req,res)=>{  // creating new bus's Information for first time
+    console.log("checked in");
     const value=new bus({
-        busType:req.body.busname,
-        busId:req.body.id,
-        startingPlace:req.body.startingPlace,
-        destination:req.body.BusDestination,
-        currentLocation:req.body.location
-        
+        busName:req.body.busName,
+        busId:req.body.busId,
+        driverId: req.body.driverId
       })
 try{
   const returnValue=await value.save()   // used to save data to database
@@ -23,13 +23,21 @@ res.send('error'+ error)
 }
 })
 
-router.get("/TotalBus",async(req,res)=>{
+router.get("/totalBus",async(req,res)=>{
     
 try{
-    // const id=req.params.id
-    // console.log('id is '+id)
-const returnvalue=await bus.find()
-res.json(returnvalue)
+    
+const busValue=await bus.find()
+
+const routeValue=await busRoute.find()
+const location=await BusLocation.find()
+let result={
+    bus:busValue,
+    routes:routeValue,
+    location:location
+}
+
+res.json(result)
 
 }
 catch(error){
@@ -37,13 +45,16 @@ res.send("error"+error)
 }
 })
 
-router.get("/FilteredBus/:destination",async(req,res)=>{
+router.get("/filteredBus/:destination",async(req,res)=>{
+  
       var {destination}=req.params
+    
     try{
-        // const id=req.params.id
-        // console.log('id is '+id)
-    const returnvalue=await bus.find({destination:destination})
-    res.json(returnvalue)
+   
+    const routeValue=await busRoute.find({routes:destination})
+   
+    //busIds.forEach((arr)=>)
+    return res.json(routeValue)
     
     }
     catch(error){
@@ -61,7 +72,7 @@ try{
     const update=await bus.updateOne(
            { busId: req.body.id },
            { $set: { currentLocation: req.body.location } }, // use this format for update or updateOne. 
-                                                                                        //it changes the values in upadate and leaves the other fileds unchanged
+                                                             //it changes the values in upadate and leaves the other fileds unchanged
              { upsert: true }  // used to insert if the object not found
         )
 

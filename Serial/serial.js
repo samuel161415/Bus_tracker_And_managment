@@ -12,10 +12,10 @@ port.pipe(parser);
 
 // Read data from the serial port 
 let m=parser.on('data',(data)=>{
-    console.log("latitude is ")
-   Data=JSON.parse(data);
+  console.log("latitude is ")
+  Data=JSON.parse(data);
   console.log(Data);
-   Latitude=Data.Latitude
+  Latitude=Data.Latitude
   
 }
 

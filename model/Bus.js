@@ -1,7 +1,7 @@
 const mongoose=require('mongoose')
 const Schema=mongoose.Schema
 const dataSchema=new Schema({
-    busType:{
+    busName:{
         type:String,
         required:true
     },
@@ -9,22 +9,22 @@ const dataSchema=new Schema({
         type:String,
         required:true
     },
-    startingPlace:{
+    driverId:{
         type:String,
         required:true, 
         //default:false
     },
-    destination:{
-        type:String,
-        required:true
-    },
-    currentLocation: {
-        type:Array,
-        required:true
-          //default: 'Point',
+    // destination:{
+    //     type:String,
+    //     required:true
+    // },
+    // location: {
+    //     type:Array,
+    //     required:true
+    //       //default: 'Point',
         
-        //coordinates: [Number], // [22.2475, 14.2547]  [longitude, latitude]
-      }
+    //     //coordinates: [Number], // [22.2475, 14.2547]  [longitude, latitude]
+    //   }
 
 
 })  

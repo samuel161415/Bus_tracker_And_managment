@@ -10,15 +10,23 @@ const Schema=mongoose.Schema
     //      default:false
 
     //  },
-     DriverWorkId:{
+     driverId:{
          type:String,
          required:true,
-         default:false
+         
      },
-     DailyDutyAllocation:{
+     busId:{
          type:String,
-         required:true,
-       
+         required: true
+     },
+     date:{
+         type:Date,
+         required:true
      }
+     
+    
+   
+   
+
  })
  module.exports=mongoose.model('DutyAllocation',DutyAllocationData)

@@ -1,3 +1,6 @@
 use("Bus-Tracker")
 //db.buses.deleteMany({})
-db.buses.find()
+//db.routes.deleteOne({routes:"megenagna"})
+//db.drivers.find()
+db.routes.find()
+//db.dropDatabase();
