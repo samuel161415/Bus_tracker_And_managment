@@ -26,9 +26,9 @@ router.post('/getDistance',async(req,res)=>{
             distance:distance,
             time:time,
             speed:30,
-            lat:location.latitude,
-            log:location.longitude
-            
+            latitude:location.latitude,
+            longitude:location.longitude,
+            busId:busId
 
         })
         //return res.json(location)
